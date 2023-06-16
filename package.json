@@ -1,0 +1,33 @@
+{
+  "name": "westerosapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/eduardodiaz92/WesterosAPI.git"
+  },
+  "keywords": [
+    "Node",
+    "API",
+    "GrapQL"
+  ],
+  "author": "eduaedodiaz@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eduardodiaz92/WesterosAPI/issues"
+  },
+  "homepage": "https://github.com/eduardodiaz92/WesterosAPI#readme",
+  "devDependencies": {
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8"
+  }
+}
