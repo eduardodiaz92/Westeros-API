@@ -1,26 +1,29 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const KINGDOM_TABLE = 'kingdom';
+const HOUSE_TABLE = 'house';
 
-const KingdomSchema = {
+const HouseSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  kingdom: {
+  house: {
     allowNull: false,
     type: DataTypes.STRING,
     unique: true,
   },
-  capital: {
+  head: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  words: {
     allowNull: false,
     type: DataTypes.STRING,
     unique: true,
   },
-  ruledBy: {
-    field: 'ruled_by',
+  vassals: {
     allowNull: false,
     type: DataTypes.STRING,
     // references: {
@@ -36,17 +39,17 @@ const KingdomSchema = {
   },
 };
 
-class Kingdom extends Model {
+class House extends Model {
   static associate() {
     // associate
   }
   static config(sequelize) {
     return {
       sequelize,
-      tableName: KINGDOM_TABLE,
-      model: 'Kingdom',
+      tableName: HOUSE_TABLE,
+      model: 'House',
       timestamps: false,
     };
   }
 }
-module.exports = { KINGDOM_TABLE, KingdomSchema, Kingdom };
+module.exports = { HOUSE_TABLE, HouseSchema, House };
