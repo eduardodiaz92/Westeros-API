@@ -1,6 +1,10 @@
 const express = require('express');
 
+const KingdomsService = require('../services/kingdom.service');
+
 const router = express.Router();
+
+const service = new KingdomsService();
 
 router.get('/', (req, res) => {
   res.json('kingdoms endpoint');
