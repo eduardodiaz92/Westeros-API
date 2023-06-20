@@ -23,17 +23,17 @@ module.exports = {
         type: Sequelize.DataTypes.STRING,
         unique: true,
       },
-      ruledBy: {
-        field: 'ruled_by',
-        allowNull: false,
-        type: Sequelize.DataTypes.STRING,
-        references: {
-          model: HOUSE_TABLE,
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-      },
+      // ruledBy: {
+      //   field: 'ruled_by',
+      //   allowNull: false,
+      //   type: Sequelize.DataTypes.STRING,
+      //   references: {
+      //     model: HOUSE_TABLE,
+      //     key: 'id',
+      //   },
+      //   onUpdate: 'CASCADE',
+      //   onDelete: 'SET NULL',
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DataTypes.DATE,

@@ -1,22 +1,35 @@
+const boom = require('@hapi/boom');
+const { models } = require('../db/sequelize');
+
 class KingdomsService {
   constructor() {
     //
   }
 
-  async create() {
-    //
+  async create(data) {
+    const newKingdom = await models.Kingdom.create(data);
+    return newKingdom;
   }
   async find() {
-    //
+    const kingdom = await models.Kingdom.findAll();
+    return kingdom;
   }
-  async findOne() {
-    //
+  async findOne(id) {
+    const kingdom = await models.Kingdom.findByPk(id);
+    if (!kingdom) {
+      throw boom.notFound('Kingdom not found');
+    }
+    return kingdom;
   }
-  async update() {
-    //
+  async update(id, changes) {
+    const kingdom = await this.findOne(id);
+    const rta = await kingdom.update(changes);
+    return rta;
   }
-  async delete() {
-    //
+  async delete(id) {
+    const kingdom = await this.findOne(id);
+    await kingdom.destroy();
+    return { id };
   }
 }
 module.exports = KingdomsService;

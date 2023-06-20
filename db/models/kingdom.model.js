@@ -41,7 +41,7 @@ const KingdomSchema = {
 
 class Kingdom extends Model {
   static associate(models) {
-    this.belongsTo(models.House, { as: 'house' });
+    // this.belongsTo(models.House, { as: 'ruled' });
   }
   static config(sequelize) {
     return {
