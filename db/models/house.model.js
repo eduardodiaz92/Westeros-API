@@ -26,10 +26,6 @@ const HouseSchema = {
   vassals: {
     allowNull: false,
     type: DataTypes.STRING,
-    // references: {
-    //   model:_ ,
-    //   key: id
-    // }
   },
   createdAt: {
     allowNull: false,

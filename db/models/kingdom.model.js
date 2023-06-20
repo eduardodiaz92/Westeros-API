@@ -1,4 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
+const { HOUSE_TABLE } = require('./house.model');
 
 const KINGDOM_TABLE = 'kingdom';
 
@@ -22,11 +23,13 @@ const KingdomSchema = {
   ruledBy: {
     field: 'ruled_by',
     allowNull: false,
-    type: DataTypes.STRING,
-    // references: {
-    //   model:_ ,
-    //   key: id
-    // }
+    type: DataTypes.INTEGER,
+    references: {
+      model: HOUSE_TABLE,
+      key: 'id',
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL',
   },
   createdAt: {
     allowNull: false,
@@ -37,8 +40,8 @@ const KingdomSchema = {
 };
 
 class Kingdom extends Model {
-  static associate() {
-    // associate
+  static associate(models) {
+    this.belongsTo(models.House, { as: 'house' });
   }
   static config(sequelize) {
     return {
