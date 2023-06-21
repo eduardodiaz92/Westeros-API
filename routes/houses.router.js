@@ -45,7 +45,6 @@ router.post(
     }
   }
 );
-
 router.patch(
   '/:id',
   validatorHandler(getHouseDto, 'params'),
@@ -61,7 +60,6 @@ router.patch(
     }
   }
 );
-
 router.delete(
   '/:id',
   validatorHandler(getHouseDto, 'params'),
@@ -75,7 +73,6 @@ router.delete(
     }
   }
 );
-
 router.get('/', (req, res) => {
   const { limit, offset } = req.query;
   if (limit && offset) {

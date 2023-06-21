@@ -1,14 +1,14 @@
 const Joi = require('joi');
 
 const id = Joi.number().integer();
-const kingdom = Joi.string().min(3).max(50);
+const kingdom = Joi.string().min(3).max(100);
 const ruledBy = Joi.number().integer();
-const capital = Joi.string().min(3).max(50);
+const capital = Joi.string().min(3).max(100);
 
 const createKingdomDto = Joi.object({
   kingdom: kingdom.required(),
-  ruledBy: ruledBy.required(),
   capital: capital.required(),
+  ruledBy: ruledBy.required(),
 });
 
 const updateKingdomDto = Joi.object({

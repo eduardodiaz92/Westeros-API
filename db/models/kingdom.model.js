@@ -24,6 +24,7 @@ const KingdomSchema = {
     field: 'ruled_by',
     allowNull: false,
     type: DataTypes.INTEGER,
+    unique: true,
     references: {
       model: HOUSE_TABLE,
       key: 'id',
@@ -41,7 +42,7 @@ const KingdomSchema = {
 
 class Kingdom extends Model {
   static associate(models) {
-    //this.belongsTo(models.House, { as: 'ruledBy' });
+    this.belongsTo(models.House, { as: 'house' });
   }
   static config(sequelize) {
     return {
