@@ -1,5 +1,5 @@
 const boom = require('@hapi/boom');
-const { models } = require('../db/sequelize');
+const { models } = require('../libs/sequelize');
 
 class HousesService {
   constructor() {
@@ -11,7 +11,7 @@ class HousesService {
     return newHouse;
   }
   async find() {
-    const house = await models.House.findAll({});
+    const house = await models.House.findAll();
     return house;
   }
   async findOne(id) {

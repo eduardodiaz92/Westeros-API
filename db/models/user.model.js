@@ -1,31 +1,23 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const HOUSE_TABLE = 'house';
+const USER_TABLE = 'users';
 
-const HouseSchema = {
+const UserSchema = {
   id: {
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  house: {
+  role: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true,
   },
-  head: {
+  username: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true,
   },
-  words: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    unique: true,
-  },
-  vassals: {
-    allowNull: false,
+  password: {
     type: DataTypes.STRING,
   },
   createdAt: {
@@ -36,20 +28,18 @@ const HouseSchema = {
   },
 };
 
-class House extends Model {
+class User extends Model {
   static associate(models) {
-    this.hasOne(models.Kingdom, {
-      as: 'kingdom',
-      foreignKey: 'ruledBy',
-    });
+    //
   }
   static config(sequelize) {
     return {
       sequelize,
-      tableName: HOUSE_TABLE,
-      modelName: 'House',
+      tableName: USER_TABLE,
+      modelName: 'User',
       timestamps: false,
     };
   }
 }
-module.exports = { HOUSE_TABLE, HouseSchema, House };
+
+module.exports = { USER_TABLE, UserSchema, User };

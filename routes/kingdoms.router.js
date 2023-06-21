@@ -1,6 +1,6 @@
 const express = require('express');
 const validatorHandler = require('../middlewares/validator.handler');
-const KingdomService = require('../services/house.service');
+const KingdomService = require('../services/kingdom.service');
 const {
   createKingdomDto,
   getKingdomDto,
@@ -11,8 +11,8 @@ const service = new KingdomService();
 
 router.get('/', async (req, res, next) => {
   try {
-    const house = await service.find();
-    res.json(house);
+    const kingdom = await service.find();
+    res.json(kingdom);
   } catch (error) {
     next(error);
   }
@@ -24,8 +24,8 @@ router.get(
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const house = await service.findOne(id);
-      res.json(house);
+      const kingdom = await service.findOne(id);
+      res.json(kingdom);
     } catch (error) {
       next(error);
     }
@@ -38,8 +38,8 @@ router.post(
   async (req, res, next) => {
     try {
       const body = req.body;
-      const newHouse = await service.create(body);
-      res.status(201).json(newHouse);
+      const newKingdom = await service.create(body);
+      res.status(201).json(newKingdom);
     } catch (error) {
       next(error);
     }
@@ -53,8 +53,8 @@ router.patch(
     try {
       const { id } = req.params;
       const body = req.body;
-      const house = await service.update(id, body);
-      res.json(house);
+      const kingdom = await service.update(id, body);
+      res.json(kingdom);
     } catch (error) {
       next(error);
     }

@@ -20,6 +20,12 @@ const KingdomSchema = {
     type: DataTypes.STRING,
     unique: true,
   },
+  createdAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    field: 'created_at',
+    defaultValue: Sequelize.NOW,
+  },
   ruledBy: {
     field: 'ruled_by',
     allowNull: false,
@@ -30,13 +36,7 @@ const KingdomSchema = {
       key: 'id',
     },
     onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
-  },
-  createdAt: {
-    allowNull: false,
-    type: DataTypes.DATE,
-    field: 'created_at',
-    defaultValue: Sequelize.NOW,
+    onDelete: 'CASCADE',
   },
 };
 
@@ -48,7 +48,7 @@ class Kingdom extends Model {
     return {
       sequelize,
       tableName: KINGDOM_TABLE,
-      model: 'Kingdom',
+      modelName: 'Kingdom',
       timestamps: false,
     };
   }

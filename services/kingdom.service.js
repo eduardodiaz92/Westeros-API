@@ -1,5 +1,5 @@
 const boom = require('@hapi/boom');
-const { models } = require('../db/sequelize');
+const { models } = require('../libs/sequelize');
 
 class KingdomsService {
   constructor() {
@@ -11,7 +11,7 @@ class KingdomsService {
     return newKingdom;
   }
   async find() {
-    const kingdom = await models.Kingdom.findAll({});
+    const kingdom = await models.Kingdom.findAll();
     return kingdom;
   }
   async findOne(id) {
