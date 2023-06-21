@@ -11,7 +11,7 @@ class HousesService {
     return newHouse;
   }
   async find() {
-    const house = await models.House.findAll();
+    const house = await models.House.findAll({});
     return house;
   }
   async findOne(id) {

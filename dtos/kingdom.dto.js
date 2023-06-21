@@ -1,9 +1,9 @@
 const Joi = require('joi');
 
 const id = Joi.number().integer();
-const kingdom = Joi.string().min(3).max(15);
+const kingdom = Joi.string().min(3).max(50);
 const ruledBy = Joi.number().integer();
-const capital = Joi.string().min(3).max(15);
+const capital = Joi.string().min(3).max(50);
 
 const createKingdomDto = Joi.object({
   kingdom: kingdom.required(),

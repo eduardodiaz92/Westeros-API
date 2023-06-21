@@ -1,10 +1,10 @@
 const Joi = require('joi');
 
 const id = Joi.number().integer();
-const house = Joi.string().min(3).max(15);
-const head = Joi.string().min(3).max(15);
-const vassals = Joi.string().min(3).max(200);
-const words = Joi.string().min(3).max(15);
+const house = Joi.string().min(3).max(50);
+const head = Joi.string().min(3).max(50);
+const vassals = Joi.string().min(3).max(50);
+const words = Joi.string().min(3).max(50);
 
 const createHouseDto = Joi.object({
   house: house.required(),

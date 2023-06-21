@@ -37,10 +37,10 @@ const HouseSchema = {
 
 class House extends Model {
   static associate(models) {
-    // this.hasOne(models.Kingdom, {
-    //   as: 'kingdom',
-    //   foreignKey: 'ruledBy',
-    // });
+    this.hasOne(models.Kingdom, {
+      as: 'kingdom',
+      foreignKey: 'ruledBy',
+    });
   }
   static config(sequelize) {
     return {
