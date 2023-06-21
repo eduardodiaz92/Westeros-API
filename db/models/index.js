@@ -5,8 +5,8 @@ function setupModels(sequelize) {
   Kingdom.init(KingdomSchema, Kingdom.config(sequelize));
   House.init(HouseSchema, House.config(sequelize));
 
-  //Kingdom.associate(sequelize.models);
   House.associate(sequelize.models);
+  Kingdom.associate(sequelize.models);
 }
 
 module.exports = setupModels;

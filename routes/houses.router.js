@@ -5,18 +5,23 @@ const {
   createHouseDto,
   updateHouseDto,
   getHouseDto,
+  queryHouseDto,
 } = require('../dtos/house.dto');
 const router = express.Router();
 const service = new HousesService();
 
-router.get('/', async (req, res, next) => {
-  try {
-    const house = await service.find();
-    res.json(house);
-  } catch (error) {
-    next(error);
+router.get(
+  '/',
+  validatorHandler(queryHouseDto, 'query'),
+  async (req, res, next) => {
+    try {
+      const house = await service.find(req.query);
+      res.json(house);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.get(
   '/:id',

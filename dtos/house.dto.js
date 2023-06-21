@@ -6,6 +6,9 @@ const head = Joi.string().min(3).max(100);
 const vassals = Joi.string().min(3).max(150);
 const words = Joi.string().min(3).max(100);
 
+const limit = Joi.number().integer();
+const offset = Joi.number().integer();
+
 const createHouseDto = Joi.object({
   house: house.required(),
   head: head.required(),
@@ -24,4 +27,9 @@ const getHouseDto = Joi.object({
   id: id.required(),
 });
 
-module.exports = { createHouseDto, updateHouseDto, getHouseDto };
+const queryHouseDto = Joi.object({
+  limit,
+  offset,
+});
+
+module.exports = { createHouseDto, updateHouseDto, getHouseDto, queryHouseDto };

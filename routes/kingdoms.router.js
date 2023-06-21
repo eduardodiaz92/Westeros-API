@@ -5,18 +5,23 @@ const {
   createKingdomDto,
   getKingdomDto,
   updateKingdomDto,
+  queryKingdomDto,
 } = require('../dtos/kingdom.dto');
 const router = express.Router();
 const service = new KingdomService();
 
-router.get('/', async (req, res, next) => {
-  try {
-    const kingdom = await service.find();
-    res.json(kingdom);
-  } catch (error) {
-    next(error);
+router.get(
+  '/',
+  validatorHandler(queryKingdomDto, 'query'),
+  async (req, res, next) => {
+    try {
+      const kingdom = await service.find(req.query);
+      res.json(kingdom);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.get(
   '/:id',
@@ -73,16 +78,5 @@ router.delete(
     }
   }
 );
-router.get('/', (req, res) => {
-  const { limit, offset } = req.query;
-  if (limit && offset) {
-    res.json({
-      limit,
-      offset,
-    });
-  } else {
-    res.send('No hay parametros');
-  }
-});
 
 module.exports = router;

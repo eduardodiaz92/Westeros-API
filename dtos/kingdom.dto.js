@@ -5,6 +5,9 @@ const kingdom = Joi.string().min(3).max(100);
 const ruledBy = Joi.number().integer();
 const capital = Joi.string().min(3).max(100);
 
+const limit = Joi.number().integer();
+const offset = Joi.number().integer();
+
 const createKingdomDto = Joi.object({
   kingdom: kingdom.required(),
   capital: capital.required(),
@@ -21,4 +24,14 @@ const getKingdomDto = Joi.object({
   id: id.required(),
 });
 
-module.exports = { createKingdomDto, updateKingdomDto, getKingdomDto };
+const queryKingdomDto = Joi.object({
+  limit,
+  offset,
+});
+
+module.exports = {
+  createKingdomDto,
+  updateKingdomDto,
+  getKingdomDto,
+  queryKingdomDto,
+};

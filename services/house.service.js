@@ -10,8 +10,12 @@ class HousesService {
     const newHouse = await models.House.create(data);
     return newHouse;
   }
-  async find() {
-    const house = await models.House.findAll();
+  async find({ limit, offset }) {
+    const options = {
+      limit,
+      offset,
+    };
+    const house = await models.House.findAll(options);
     return house;
   }
   async findOne(id) {
