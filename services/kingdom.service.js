@@ -17,6 +17,7 @@ class KingdomsService {
       offset,
     };
     const kingdom = await models.Kingdom.findAll(options);
+    delete kingdom.houseId;
     return kingdom;
   }
   async findOne(id) {
