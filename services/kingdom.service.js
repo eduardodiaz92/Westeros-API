@@ -12,7 +12,6 @@ class KingdomsService {
   }
   async find({ limit, offset }) {
     const options = {
-      include: ['house'],
       limit,
       offset,
     };

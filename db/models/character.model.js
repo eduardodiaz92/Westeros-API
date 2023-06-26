@@ -1,32 +1,29 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { CHARACTER_TABLE } = require('./character.model');
+const { HOUSE_TABLE } = require("./character.model")
 
-const KINGDOM_TABLE = 'kingdom';
+const CHARACTER_TABLE = 'character'
 
-const KingdomSchema = {
+const CharacterSchema = {
   id: {
-    allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
     type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
   },
   name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  capital: {
+  title: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  ruler: {
-    type: DataTypes.STRING,
+  house_id: {
+    type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: CHARACTER_TABLE,
+      model: HOUSE_TABLE,
       key: 'id',
     },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
   },
   createdAt: {
     allowNull: false,
@@ -35,19 +32,18 @@ const KingdomSchema = {
     defaultValue: Sequelize.NOW,
   },
 };
-
-
-class Kingdom extends Model {
+class Character extends Model {
   static associate(models) {
-    this.belongsTo(models.Character, { as: 'character' });
+    //
   }
   static config(sequelize) {
     return {
       sequelize,
-      tableName: KINGDOM_TABLE,
-      modelName: 'Kingdom',
+      tableName: CHARACTER_TABLE,
+      modelName: 'Character',
       timestamps: false,
     };
   }
 }
-module.exports = { KINGDOM_TABLE, KingdomSchema, Kingdom };
+
+module.exports = {CHARACTER_TABLE, CharacterSchema ,}

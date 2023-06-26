@@ -9,24 +9,17 @@ const HouseSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  house: {
-    allowNull: false,
+  name: {
     type: DataTypes.STRING,
-    unique: true,
+    allowNull: false,
   },
-  head: {
-    allowNull: false,
+  sigil: {
     type: DataTypes.STRING,
-    unique: true,
+    allowNull: false,
   },
   words: {
-    allowNull: false,
     type: DataTypes.STRING,
-    unique: true,
-  },
-  vassals: {
     allowNull: false,
-    type: DataTypes.STRING,
   },
   createdAt: {
     allowNull: false,
@@ -37,11 +30,8 @@ const HouseSchema = {
 };
 
 class House extends Model {
-  static associate(models) {
-    this.hasOne(models.Kingdom, {
-      as: 'kingdom',
-      foreignKey: 'ruledBy',
-    });
+  static associate() {
+    //
   }
   static config(sequelize) {
     return {
