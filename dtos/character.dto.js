@@ -3,17 +3,20 @@ const Joi = require('joi');
 const id = Joi.number().integer();
 const name = Joi.string().max(30);
 const title = Joi.string().max(30);
+const houseId= Joi.number().integer();
 
 
 const createCharacterDto = Joi.object({
   name: name.required(),
   title: title.required(),
+  houseId:houseId
 
 });
 
 const updateCharacterDto = Joi.object({
   name: name,
-  title: title
+  title: title,
+  houseId: houseId
 });
 
 const getCharacterDto = Joi.object({

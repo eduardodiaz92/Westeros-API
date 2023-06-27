@@ -11,7 +11,7 @@ const offset = Joi.number().integer();
 const createKingdomDto = Joi.object({
   kingdom: kingdom.required(),
   capital: capital.required(),
-  ruledBy: ruledBy.required(),
+  ruledBy: ruledBy
 });
 
 const updateKingdomDto = Joi.object({

@@ -19,8 +19,8 @@ const KingdomSchema = {
     allowNull: false,
   },
   ruler: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.INTEGER,
+    allowNull: true,
     references: {
       model: CHARACTER_TABLE,
       key: 'id',

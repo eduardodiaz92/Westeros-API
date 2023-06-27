@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const id = Joi.number().integer();
 const name = Joi.string().min(3).max(100);
-const sigil = Joi.string().min(3).max(150);
+const sigil = Joi.string().uri();
 const words = Joi.string().min(3).max(100);
 
 const limit = Joi.number().integer();

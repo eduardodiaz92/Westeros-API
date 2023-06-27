@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { HOUSE_TABLE } = require("./character.model")
+const { HOUSE_TABLE } = require("./house.model")
 
 const CHARACTER_TABLE = 'character'
 
@@ -17,9 +17,10 @@ const CharacterSchema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  house_id: {
+  houseId: {
+    field: 'house_id',
     type: DataTypes.INTEGER,
-    allowNull: false,
+    allowNull: true,
     references: {
       model: HOUSE_TABLE,
       key: 'id',
@@ -34,7 +35,7 @@ const CharacterSchema = {
 };
 class Character extends Model {
   static associate(models) {
-    //
+    this.belongsTo(models.House, {as: 'house'})
   }
   static config(sequelize) {
     return {
@@ -46,4 +47,4 @@ class Character extends Model {
   }
 }
 
-module.exports = {CHARACTER_TABLE, CharacterSchema ,}
+module.exports = {CHARACTER_TABLE, CharacterSchema , Character}
