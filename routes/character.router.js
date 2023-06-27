@@ -7,14 +7,17 @@ const {
   createCharacterDto,
   updateCharacterDto,
   getCharacterDto,
+  queryCharacterDto
 } = require('../dtos/character.dto');
 
 const router = express.Router();
 const service = new CharacterService();
 
-router.get('/', async (req, res, next) => {
+router.get('/',
+validatorHandler(queryCharacterDto, 'params'),
+async (req, res, next) => {
   try {
-    const users = await service.find();
+    const users = await service.find(req.query);
     res.json(users);
   } catch (error) {
     next(error);

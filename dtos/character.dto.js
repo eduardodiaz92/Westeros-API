@@ -5,6 +5,8 @@ const name = Joi.string().max(30);
 const title = Joi.string().max(30);
 const houseId= Joi.number().integer();
 
+const limit = Joi.number().integer();
+const offset = Joi.number().integer();
 
 const createCharacterDto = Joi.object({
   name: name.required(),
@@ -23,4 +25,9 @@ const getCharacterDto = Joi.object({
   id: id.required(),
 });
 
-module.exports = { createCharacterDto, updateCharacterDto, getCharacterDto };
+const queryCharacterDto = Joi.object({
+  limit,
+  offset,
+});
+
+module.exports = { createCharacterDto, updateCharacterDto, getCharacterDto, queryCharacterDto };
