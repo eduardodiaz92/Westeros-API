@@ -1,4 +1,6 @@
 const express = require('express');
+const { checkRoles } = require('../middlewares/auth.handler');
+const passport = require('passport');
 const validatorHandler = require('../middlewares/validator.handler');
 const UserService = require('./../services/user.service');
 const {
@@ -48,6 +50,8 @@ router.post(
 
 router.patch(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'mad king'),
   validatorHandler(getUserDto, 'params'),
   validatorHandler(updateUserDto, 'body'),
   async (req, res, next) => {
@@ -64,6 +68,8 @@ router.patch(
 
 router.delete(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'mad king'),
   validatorHandler(getUserDto, 'params'),
   async (req, res, next) => {
     try {

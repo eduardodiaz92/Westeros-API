@@ -10,8 +10,9 @@ class CharacterService {
     const newCharacter = await models.Character.create(data);
     return newCharacter;
   }
-  async find({ limit, offset }) {
+  async find( limit, offset ) {
     const options = {
+      include:['house'],
       limit,
       offset,
     };

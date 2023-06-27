@@ -10,17 +10,16 @@ class KingdomsService {
     const newKingdom = await models.Kingdom.create(data);
     return newKingdom;
   }
-  async find({ limit, offset }) {
+  async find( {limit, offset} ) {
     const options = {
       limit,
       offset,
     };
     const kingdom = await models.Kingdom.findAll(options);
-    delete kingdom.houseId;
     return kingdom;
   }
   async findOne(id) {
-    const kingdom = await models.Kingdom.findByPk(id, { include: ['house'] });
+    const kingdom = await models.Kingdom.findByPk(id);
     if (!kingdom) {
       throw boom.notFound('Kingdom not found');
     }

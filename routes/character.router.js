@@ -1,11 +1,14 @@
 const express = require('express');
 const validatorHandler = require('../middlewares/validator.handler');
+const { checkRoles } = require('../middlewares/auth.handler');
+const passport = require('passport');
 const CharacterService = require('./../services/character.service');
 const {
   createCharacterDto,
   updateCharacterDto,
   getCharacterDto,
 } = require('../dtos/character.dto');
+
 const router = express.Router();
 const service = new CharacterService();
 
@@ -34,6 +37,8 @@ router.get(
 
 router.post(
   '/',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'mad king'),
   validatorHandler(createCharacterDto, 'body'),
   async (req, res, next) => {
     try {
@@ -48,6 +53,8 @@ router.post(
 
 router.patch(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'mad king'),
   validatorHandler(getCharacterDto, 'params'),
   validatorHandler(updateCharacterDto, 'body'),
   async (req, res, next) => {
@@ -64,6 +71,8 @@ router.patch(
 
 router.delete(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles( 'mad king'),
   validatorHandler(getCharacterDto, 'params'),
   async (req, res, next) => {
     try {

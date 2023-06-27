@@ -13,7 +13,7 @@ function routerApi(app) {
   router.use('/houses', housesRouter);
   router.use('/users', usersRouter);
   router.use('/auth', authRouter);
-  router.use('/character', characterRouter);
+  router.use('/characters', characterRouter);
 }
 
 module.exports = routerApi;

@@ -17,7 +17,7 @@ function checkRoles(...roles) {
     if (roles.includes(user.role)) {
       next();
     } else {
-      next(boom.unauthorized('your role is not allow'));
+      next(boom.unauthorized('your role is not allowed'));
     }
   };
 }

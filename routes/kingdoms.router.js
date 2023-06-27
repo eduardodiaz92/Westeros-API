@@ -1,4 +1,6 @@
 const express = require('express');
+const { checkRoles } = require('../middlewares/auth.handler');
+const passport = require('passport');
 const validatorHandler = require('../middlewares/validator.handler');
 const KingdomService = require('../services/kingdom.service');
 const {
@@ -39,6 +41,8 @@ router.get(
 
 router.post(
   '/',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'mad king'),
   validatorHandler(createKingdomDto, 'body'),
   async (req, res, next) => {
     try {
@@ -52,6 +56,8 @@ router.post(
 );
 router.patch(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'mad king'),
   validatorHandler(getKingdomDto, 'params'),
   validatorHandler(updateKingdomDto, 'body'),
   async (req, res, next) => {
@@ -67,6 +73,8 @@ router.patch(
 );
 router.delete(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('mad king'),
   validatorHandler(getKingdomDto, 'params'),
   async (req, res, next) => {
     try {

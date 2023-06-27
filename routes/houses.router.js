@@ -1,4 +1,6 @@
 const express = require('express');
+const { checkRoles } = require('../middlewares/auth.handler');
+const passport = require('passport');
 const validatorHandler = require('../middlewares/validator.handler');
 const HousesService = require('../services/house.service');
 const {
@@ -39,6 +41,8 @@ router.get(
 
 router.post(
   '/',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'mad king'),
   validatorHandler(createHouseDto, 'body'),
   async (req, res, next) => {
     try {
@@ -52,6 +56,8 @@ router.post(
 );
 router.patch(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('admin', 'mad king'),
   validatorHandler(getHouseDto, 'params'),
   validatorHandler(updateHouseDto, 'body'),
   async (req, res, next) => {
@@ -67,6 +73,8 @@ router.patch(
 );
 router.delete(
   '/:id',
+  passport.authenticate('jwt', { session: false }),
+  checkRoles('mad king'),
   validatorHandler(getHouseDto, 'params'),
   async (req, res, next) => {
     try {

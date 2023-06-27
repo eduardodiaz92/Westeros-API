@@ -39,7 +39,8 @@ const KingdomSchema = {
 
 class Kingdom extends Model {
   static associate(models) {
-    this.belongsTo(models.Character, { as: 'character' });
+    this.belongsTo(models.Character, { as: 'character' }
+    );
   }
   static config(sequelize) {
     return {
