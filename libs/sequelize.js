@@ -9,11 +9,11 @@ const URI = config.dbUrl;
 
 // Example for postgres
 // Example for mysql
-const sequelize = new Sequelize(URI, {
+const sequelize = new Sequelize('postgresql://postgres:bRlY6lm3VnC8SrjD06O1@containers-us-west-28.railway.app:6821/railway', {
   dialect: 'postgres',
   logging: true,
 });
 
 setupModels(sequelize);
-
+sequelize.sync();
 module.exports = sequelize;
